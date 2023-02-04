@@ -18,7 +18,7 @@ function main(currentTime) {
   if (gameOver) {    
     deadAudio.play();
     if (confirm("You died :(, Press ok to restart.")) {
-      window.location = "/";
+      window.location = "/crazysnake";
     }
     return
   }
