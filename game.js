@@ -16,7 +16,6 @@ const deadAudio = new Audio('./audio/crazy_snake_death.wav');
 
 function main(currentTime) {
   if (gameOver) {    
-    gameAudio.pause()
     deadAudio.play();
     if (confirm("You died :(, Press ok to restart.")) {
       window.location = "/";
