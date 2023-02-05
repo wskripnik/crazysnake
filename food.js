@@ -9,25 +9,29 @@ const SCORE_INCREMENT = {
   food2: 5,
 };
 let score = 0;
-const gameAudio = new Audio("./audio/crazy snake music.wav");
-const scoreAudio = new Audio("./audio/Crazy snake score music.wav");
+const scoreAudio = new Audio("./audio/score.wav");
+export const gameAudio = new Audio("./audio/crazy snake music.wav");
 
 export function update() {
-  if (
-    (gameAudio.paused && gameAudio.currentTime > 0 && !gameAudio.ended) ||
-    gameAudio.currentTime === 0
-  ) {
-    gameAudio.play();
-  }
   if (onSnake(food)) {
     expandSnake(EXPANSION_RATE);
     score += SCORE_INCREMENT["food"];
     gameAudio.pause();
     scoreAudio.play();
+    setTimeout(function() {      
+      scoreAudio.pause()
+      scoreAudio.currentTime = 0;
+    }, 100)
     food = getRandomFoodPosition();
   } else if (onSnake(food2)) {
     expandSnake(EXPANSION_RATE);
     score += SCORE_INCREMENT["food2"];
+    gameAudio.pause();
+    scoreAudio.play();
+    setTimeout(function() {      
+      scoreAudio.pause()
+      scoreAudio.currentTime = 0;
+    }, 100)
     food2 = getRandomFoodPosition();
   }
 }
