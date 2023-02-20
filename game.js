@@ -12,7 +12,7 @@ import {
   gameAudio,
 } from "./food.js";
 import { outsideGrid } from "./grid.js";
-import { showName, getName } from './input.js';
+import { showName, getName } from "./input.js";
 
 let lastrenderTime = 0;
 let gameOver = false;
@@ -57,7 +57,9 @@ function main(currentTime) {
     if (leaderboard) {
       leaderboard = JSON.parse(leaderboard);
       if (leaderboard) {
-        leaderboard[name_] = score;
+        if (score > parseInt(leaderboard[name_]) || !leaderboard[name_]) {
+          leaderboard[name_] = score;
+        }
         leaderboard = _.reduceRight(
           _.invert(_.invert(leaderboard)),
           function (current, val, key) {
