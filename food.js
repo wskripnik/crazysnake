@@ -24,7 +24,7 @@ export function update() {
     }, 100)
     food = getRandomFoodPosition();
   } else if (onSnake(food2)) {
-    expandSnake(EXPANSION_RATE);
+    expandSnake(EXPANSION_RATE + 1);
     score += SCORE_INCREMENT["food2"];
     gameAudio.pause();
     scoreAudio.play();
