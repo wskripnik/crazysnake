@@ -58,7 +58,9 @@ function main(currentTime) {
       leaderboard = JSON.parse(leaderboard);
       if (leaderboard) {
         if (score > parseInt(leaderboard[name_]) || !leaderboard[name_]) {
-          leaderboard[name_] = score;
+          if (name_ !== 'your name') {
+            leaderboard[name_] = score;
+          }
         }
         leaderboard = _.reduceRight(
           _.invert(_.invert(leaderboard)),
@@ -81,7 +83,9 @@ function main(currentTime) {
       }
     } else {
       leaderboardTrimmed = {};
-      leaderboardTrimmed[name_] = score;
+      if (name_ !== 'your name') {
+        leaderboardTrimmed[name_] = score;
+      }
     }
     localStorage.setItem("leaderboard", JSON.stringify(leaderboardTrimmed));
     if (confirm("You died :(, Press ok to restart.")) {
